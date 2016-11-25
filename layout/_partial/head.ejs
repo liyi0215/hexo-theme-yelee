@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="format-detection" content="telephone=no" />
 <meta name="author" content="<%= config.author %>" />
-
+<meta baidu-gxt-verify-token="173e0dca6ce58ec96e60259a9ce2c678">
 <% if (is_home()){ %>
     <% if (theme.baidu_site) { %> 
         <meta name="baidu-site-verification" content="<%- theme.baidu_site %>" />
@@ -27,6 +27,7 @@
 
 <% if (theme.favicon){ %>
     <link rel="shortcut icon" href="<%- theme.root_url %><%- theme.favicon %>">
+    <link rel="bookmark" href="<%- theme.root_url %><%- theme.favicon %>">
 <% } %>
 
 <% if (theme.animate){ %>
@@ -112,5 +113,4 @@ if ( is_archive() ) {
         })();
     </script>
 <% } %>
-
 </head>
