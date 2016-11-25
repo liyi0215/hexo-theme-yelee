@@ -40,8 +40,9 @@ since: 2016
 
 subnav:
   Email: "mailto:ileeyi@163.com"
-  #新浪微博: "sina weibo"
+  新浪微博: "http://weibo.com/lp0112"
   GitHub: "https://github.com/liyi0215"
+  QQ: "tencent://message/?uin=932146660&Site=http://imliyi.com&Menu=yes"
   #V2EX: "#"
   # RSS: "/atom.xml"
   #知乎: "zhihu"
@@ -61,7 +62,6 @@ subnav:
   #Google: "#"
   #Twitter: "#"
   #LinkedIn: "#"
-  #QQ: "#"
   #微信: "Wechat"
   #PayPal: "#"
   #StackOverflow: "#"
@@ -170,7 +170,7 @@ jquery_ui: false
 # Max width of right cloumn | 限制右侧内容的宽带 
 limit_article_width: 
   on: true
-  max_width: 70 # em
+  max_width: 64 # em
 
 # >>> Small features | 小功能设置 <<<
 
