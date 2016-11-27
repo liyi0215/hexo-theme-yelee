@@ -147,7 +147,7 @@ heading_style: 1 # Value: 0 - 2
 list_style: 0  # value: 0 - 12 可选
 
 # 左边栏宽度 px
-left_col_width: 300
+left_col_width: 320
 
 # Copyright info. of post | 文末版权信息
 copyright: true
@@ -302,3 +302,9 @@ CDN:
 
 # dot 动画
 dot_canvas: true
+
+# click heart
+click_heart: true
+
+# time
+time: true
