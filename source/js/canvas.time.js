@@ -1,7 +1,7 @@
 $(function(){
     var context; //Canvas绘制上下文
     var CANVAS_WIDTH = 320,
-        CANVAS_HEIGHT = 100,
+        CANVAS_HEIGHT = 80,
         RADIUS = 2,//半径
         timeNums = [],
         spacing = 1,//数字间距
@@ -9,6 +9,7 @@ $(function(){
         currentNums = [], //屏幕显示的8个字符
         u=0.65, //碰撞能量损耗系数
         mLeft = ~~(CANVAS_WIDTH/2 - RADIUS * 50),
+        mTop = 20,
         digit = [
             [
                 [0,0,1,1,1,0,0],
@@ -143,11 +144,11 @@ $(function(){
                 [0,0,0,0]
             ]//:
         ];
-    function drawDatetime(cxt){
+    function drawDatetime(ctx){
         var curTime = new Date();
         var offsetX = mLeft;
-        var offsetY = 30;
-        cxt.fillStyle = "#005eac";
+        var offsetY = 20;
+        ctx.fillStyle = "#8eb2e2";
         nums = [
             {num: ~~(curTime.getDate()/10)},
             {num: curTime.getDate()%10},
@@ -161,7 +162,7 @@ $(function(){
 
         for(var x = 0;x<nums.length;x++){
             nums[x].offsetX = offsetX;
-            offsetX = drawSingleNumber(offsetX,offsetY, nums[x].num,cxt);
+            offsetX = drawSingleNumber(offsetX,offsetY, nums[x].num,ctx);
             //两个数字连一块，应该间隔一些距离
             if(x<nums.length-1){
                 if((nums[x].num!=10) &&(nums[x+1].num!=10)){
@@ -174,6 +175,7 @@ $(function(){
             currentNums = nums;
         }else{
             //进行比较
+            balls = [];
             for(var index = 0;index<currentNums.length;index++){
                 if(currentNums[index].num!=nums[index].num){
                     //不一样时，添加彩色小球
@@ -182,18 +184,19 @@ $(function(){
                 }
             }
         }
-        renderBalls(cxt);
+        renderBalls(ctx);
         updateBalls();
     }
     function addBalls (item) {
         var numMatrix = digit[item.num];
+        var color = "#" + (~~(Math.random()*(1<<24))).toString(16);
         for(var y = 0;y<numMatrix.length;y++){
             for(var x = 0;x<numMatrix[y].length;x++){
                 if(numMatrix[y][x]==1){
                     var ball={
                         offsetX:item.offsetX+RADIUS+RADIUS*2*x,
-                        offsetY:30+RADIUS+RADIUS*2*y,
-                        color:"#" + (~~(Math.random()*(1<<24))).toString(16),
+                        offsetY:mTop+RADIUS+RADIUS*2*y,
+                        color:color,
                         g:1.5+Math.random(),
                         vx:Math.pow(-1, Math.ceil(Math.random()*10))*4+Math.random(),
                         vy:-5
@@ -203,12 +206,12 @@ $(function(){
             }
         }
     }
-    function renderBalls(cxt){
+    function renderBalls(ctx){
         for(var index = 0;index<balls.length;index++){
-            cxt.beginPath();
-            cxt.fillStyle=balls[index].color;
-            cxt.arc(balls[index].offsetX, balls[index].offsetY, RADIUS, 0, 2*Math.PI);
-            cxt.fill();
+            ctx.beginPath();
+            ctx.fillStyle=balls[index].color;
+            ctx.arc(balls[index].offsetX, balls[index].offsetY, RADIUS, 0, 2*Math.PI);
+            ctx.fill();
         }
     }
     function updateBalls () {
@@ -232,18 +235,18 @@ $(function(){
             balls.pop();
         }
     }
-    function drawSingleNumber(offsetX, offsetY, num, cxt){
+    function drawSingleNumber(offsetX, offsetY, num, ctx){
         var numMatrix = digit[num];
         for(var y = 0;y<numMatrix.length;y++){
             for(var x = 0;x<numMatrix[y].length;x++){
                 if(numMatrix[y][x]==1){
-                    cxt.beginPath();
-                    cxt.arc(offsetX+RADIUS+RADIUS*2*x,offsetY+RADIUS+RADIUS*2*y,RADIUS,0,2*Math.PI);
-                    cxt.fill();
+                    ctx.beginPath();
+                    ctx.arc(offsetX+RADIUS+RADIUS*2*x,offsetY+RADIUS+RADIUS*2*y,RADIUS,0,2*Math.PI);
+                    ctx.fill();
                 }
             }
         }
-        cxt.beginPath();
+        ctx.beginPath();
         offsetX += numMatrix[0].length*RADIUS*2;
         return offsetX;
     }
@@ -253,12 +256,9 @@ $(function(){
     canvas.height=CANVAS_HEIGHT;
     context = canvas.getContext("2d");
 
-    //记录当前绘制的时刻
-    var currentDate = new Date();
-
     setInterval(function(){
         //清空整个Canvas，重新绘制内容
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
         drawDatetime(context);
-    }, 50)
+    }, 1000)
 });
