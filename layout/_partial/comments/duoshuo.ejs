@@ -1,5 +1,8 @@
 <div class="duoshuo" id="comments">
-    <div id="comment-box" ></div>
+    <% if(page.visitors){ %>
+        <div class="ds-recent-visitors" data-num-items="28" data-avatar-size="48" id="ds-recent-visitors" style="overflow:hidden;box-shadow: 0 0 5px #d6c8c8;padding: 5px;"></div>
+    <% } %>
+    <div id="comment-box"></div>
     <div class="ds-thread" id="ds-thread" data-thread-key="<%=key%>" data-title="<%=title%>" data-url="<%=url%>"></div>
     <script>
         var duoshuoQuery = {short_name:"<%=theme.duoshuo.domain%>"};

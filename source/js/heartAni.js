@@ -9,7 +9,8 @@ $(function () {
             "position": "absolute",
             "top": top - 20,
             "left": left - 8,
-            "color": "#" + (~~(Math.random() * (1 << 24))).toString(16)
+            "color": "#" + (~~(Math.random() * (1 << 24))).toString(16),
+            "z-index": 9999
         });
         $('body').append(heart);
         heart.animate({top: top-60+"px"}, {duration: d || 500, easing: "linear", complete: function () {

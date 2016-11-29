@@ -1,4 +1,18 @@
 <div class="scroll" id="scroll">
+    <% if(page.print){ %>
+        <script src="<%=config.root%>js/jquery.printarea.js"></script>
+        <script>
+            $(function(){
+                var btn = $('<a class="print-resume"><span class="fa fa-print"></span>打印预览</a>').on('click', function(){
+                    console.log('print resume');
+                    $('.article-inner').printArea({
+                        popTitle: '李燚 - 低级前端搬砖工程师 - 简历'
+                    });
+                });
+                $("#scroll").append(btn);
+            })
+        </script>
+    <% } %>
     <a href="#" title="<%= __('tooltip.back2top') %>"><i class="fa fa-arrow-up"></i></a>
     <a href="#comments" onclick="load$hide();" title="<%= __('tooltip.jump2comments') %>"><i class="fa fa-comments-o"></i></a>
     <a href="#footer" title="<%= __('tooltip.go2bottom') %>"><i class="fa fa-arrow-down"></i></a>
