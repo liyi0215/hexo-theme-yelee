@@ -307,4 +307,4 @@ dot_canvas: true
 click_heart: true
 
 # time
-time: true
+time: false

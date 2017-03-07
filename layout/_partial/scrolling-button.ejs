@@ -9,7 +9,10 @@
                         popTitle: '李燚 - 低级前端搬砖工程师 - 简历'
                     });
                 });
-                $("#scroll").append(btn);
+                var downPDF = $('<a class="down-pdf print-resume" href="<%= config.url %>/liyi.pdf"><span class="fa fa-download"></span>下载简历</a>').on('click', function(){
+                    alert('down')
+                })
+                $("#scroll").prepend(btn); //.append(downPDF)
             })
         </script>
     <% } %>
